@@ -227,6 +227,7 @@ gateway:
   # -- Apache APISIX service type for user access itself
   type: NodePort
   externalTrafficPolicy: Cluster
+  hostport: false
   # annotations:
   #   service.beta.kubernetes.io/aws-load-balancer-type: nlb
   # loadBalancerIP: a.b.c.d

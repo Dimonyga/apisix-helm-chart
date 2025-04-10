@@ -140,12 +140,18 @@ spec:
             - name: http
               containerPort: 9080
               protocol: TCP
+              {{- if .Values.gateway.hostport }}
+              hostPort: 9080
+              {{- end }}
             - name: http-admin
               containerPort: 9180
               protocol: TCP
             - name: https
               containerPort: {{ .Values.gateway.tls.containerPort }}
               protocol: TCP
+              {{- if .Values.gateway.hostport }}
+              hostPort: {{ .Values.gateway.tls.containerPort }}
+              {{- end }}
             {{- if .Values.serviceMonitor.enabled }}
             - containerPort: 9091
               name: prometheus
