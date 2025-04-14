@@ -144,8 +144,8 @@ spec:
             - name: http
               containerPort: 9080
               protocol: TCP
-              {{- if .Values.gateway.hostport }}
-              hostPort: 9080
+              {{- if gt (int .Values.gateway.hostport.http) 0 }}
+              hostPort: {{ .Values.gateway.hostport.http }}
               {{- end }}
             - name: http-admin
               containerPort: 9180
@@ -153,8 +153,8 @@ spec:
             - name: https
               containerPort: {{ .Values.gateway.tls.containerPort }}
               protocol: TCP
-              {{- if .Values.gateway.hostport }}
-              hostPort: {{ .Values.gateway.tls.containerPort }}
+              {{- if gt (int .Values.gateway.hostport.tls) 0 }}
+              hostPort: {{ .Values.gateway.hostport.tls }}
               {{- end }}
             {{- if .Values.serviceMonitor.enabled }}
             - containerPort: 9091
