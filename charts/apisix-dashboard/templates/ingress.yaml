@@ -53,20 +53,18 @@ spec:
     - host: {{ .host | quote }}
       http:
         paths:
-          {{- range .paths }}
-          - path: {{ . }}
-            {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.Version }}
-            pathType: {{ .pathType }}
-            backend:
-              service:
-                name: {{ $fullName }}
-                port:
-                  number:  {{ $svcPort }}
-            {{- else }}
-            backend:
-              serviceName: {{ $fullName }}
-              servicePort: {{ $svcPort }}
-            {{- end }}
+        - path: /
+          {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.Version }}
+          pathType: {{ .pathType }}
+          backend:
+            service:
+              name: {{ $fullName }}
+              port:
+                number:  {{ $svcPort }}
+          {{- else }}
+          backend:
+            serviceName: {{ $fullName }}
+            servicePort: {{ $svcPort }}
           {{- end }}
     {{- end }}
   {{- end }}

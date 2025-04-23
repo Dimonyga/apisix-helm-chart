@@ -150,7 +150,6 @@ ingress:
   # -- The list of hostnams to be covered with this ingress record
   hosts:
     - host: apisix-dashboard.local
-      paths: []
       pathType: ImplementationSpecific
   # -- Create TLS Secret
   tls: []
