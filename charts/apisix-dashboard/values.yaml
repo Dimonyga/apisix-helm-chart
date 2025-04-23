@@ -151,6 +151,7 @@ ingress:
   hosts:
     - host: apisix-dashboard.local
       paths: []
+      pathType: ImplementationSpecific
   # -- Create TLS Secret
   tls: []
   #  - secretName: chart-example-tls
